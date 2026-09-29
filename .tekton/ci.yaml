@@ -1,0 +1,62 @@
+# Lints the repository's Markdown. Triggered by Octomatron for pull requests and the merge queue.
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  generateName: github-ci-
+spec:
+  timeouts:
+    pipeline: 10m
+  taskRunTemplate:
+    serviceAccountName: pipeline
+  workspaces:
+    - name: source
+      emptyDir: {}
+  pipelineSpec:
+    params:
+      - name: repo-url
+        type: string
+      - name: revision
+        type: string
+    workspaces:
+      - name: source
+    tasks:
+      - name: lint
+        workspaces:
+          - name: source
+            workspace: source
+        params:
+          - name: repo-url
+            value: $(params.repo-url)
+          - name: revision
+            value: $(params.revision)
+        taskSpec:
+          params:
+            - name: repo-url
+              type: string
+            - name: revision
+              type: string
+          workspaces:
+            - name: source
+          stepTemplate:
+            workingDir: $(workspaces.source.path)
+            env:
+              - name: REPO_URL
+                value: $(params.repo-url)
+              - name: REVISION
+                value: $(params.revision)
+          steps:
+            - name: checkout
+              image: alpine/git:v2.54.0
+              script: |
+                #!/bin/sh
+                set -eu
+                git init --quiet .
+                git remote add origin "$REPO_URL"
+                git fetch --quiet --depth=1 origin "$REVISION"
+                git checkout --quiet FETCH_HEAD
+            - name: markdownlint
+              image: davidanson/markdownlint-cli2:v0.23.3
+              script: |
+                #!/bin/sh
+                set -eu
+                markdownlint-cli2
