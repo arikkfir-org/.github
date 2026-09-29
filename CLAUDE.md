@@ -10,5 +10,5 @@ The organization's special repository: `README.md` introduces the org, and any c
 - Anything added here applies org-wide; say so in the pull request.
 - Conventions (commits, pull requests, Linear keys) are defined in `arikkfir-org/docs/CONTRIBUTING.md`; link to them
   rather than restating them.
-- CI is Octomatron + Tekton (`.octomatron.yaml`, `.tekton/ci.yaml`): markdownlint with `.markdownlint-cli2.yaml`.
+- CI is Octomaton + Tekton (`.octomaton.yaml`, `.tekton/ci.yaml`): markdownlint with `.markdownlint-cli2.yaml`.
   Run `npx markdownlint-cli2` before pushing.

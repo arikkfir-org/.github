@@ -1,4 +1,4 @@
-# Lints the repository's Markdown. Triggered by Octomatron for pull requests and the merge queue.
+# Lints the repository's Markdown. Triggered by Octomaton for pull requests and the merge queue.
 apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
