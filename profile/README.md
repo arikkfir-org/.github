@@ -9,5 +9,5 @@ A personal development hub: the home of personal projects, and of the platform t
 - **Knowledge**: designs, architecture and runbooks live in [docs](https://github.com/arikkfir-org/docs), published
   (behind sign-in) at <https://docs.dev.kfirs.com/README.html>. Conventions are in
   [CONTRIBUTING](https://github.com/arikkfir-org/docs/blob/main/CONTRIBUTING.md).
-- **Tooling**: shared developer tooling, such as the Claude Code bundle, lives in
-  [tooling](https://github.com/arikkfir-org/tooling).
+- **Tooling**: shared developer tooling lives in [tooling](https://github.com/arikkfir-org/tooling): the Claude Code
+  bundle, the pull request reviewer, and the pipelines every repository runs.
